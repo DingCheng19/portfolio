@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sample Apps Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <h1>Sample Apps Portfolio</h1>
+      <p class="lead">
+        個人開発・サンプルアプリの一覧です。各プロジェクトの概要、使用技術、
+        GitHub リポジトリへのリンクをまとめています。
+      </p>
+      <div class="links">
+        <a class="button" href="https://github.com/DingCheng19" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+        <a class="button secondary" href="mailto:your-email@example.com">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2>Projects</h2>
+      <p class="section-text">
+        新しいプロジェクトを追加するときは、<code>projects.json</code> に1件追加してください。
+      </p>
+      <div id="project-list" class="grid"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 YOUR_NAME Portfolio</p>
+    </div>
+  </footer>
+
+  <script>
+    async function loadProjects() {
+      const container = document.getElementById('project-list');
+
+      try {
+        const response = await fetch('./projects.json');
+        const projects = await response.json();
+
+        container.innerHTML = projects.map(project => `
+          <article class="card">
+            <h3>${project.title}</h3>
+            <p>${project.description}</p>
+            <div class="meta">
+              <strong>Tech:</strong> ${project.tech.join(', ')}
+            </div>
+            <div class="meta">
+              <strong>Highlights:</strong>
+              <ul>
+                ${project.highlights.map(item => `<li>${item}</li>`).join('')}
+              </ul>
+            </div>
+            <div class="card-links">
+              <a href="${project.github}" target="_blank" rel="noopener noreferrer">GitHub</a>
+              ${project.demo ? `<a href="${project.demo}" target="_blank" rel="noopener noreferrer">Demo</a>` : ''}
+            </div>
+          </article>
+        `).join('');
+      } catch (error) {
+        container.innerHTML = `
+          <div class="card">
+            <h3>読み込みエラー</h3>
+            <p>projects.json の読み込みに失敗しました。ファイルの場所や JSON の形式を確認してください。</p>
+          </div>
+        `;
+      }
+    }
+
+    loadProjects();
+  </script>
+</body>
+</html>
