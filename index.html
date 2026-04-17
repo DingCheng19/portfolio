@@ -16,7 +16,7 @@
       </p>
       <div class="links">
         <a class="button" href="https://github.com/DingCheng19" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
-        <a class="button secondary" href="mailto:dingcheng.19891102@gmail.com">Contact</a>
+        <a class="button secondary" href="mailto:your-email@example.com">Contact</a>
       </div>
     </div>
   </header>
@@ -24,82 +24,100 @@
   <main class="container">
     <section>
       <h2>Projects</h2>
+      <p class="section-text">
+        新しいプロジェクトを追加するときは、<code>projects.json</code> に1件追加してください。
+      </p>
       <div id="project-list" class="grid"></div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="container">
-      <p>© 2026 DINGCHENG Portfolio</p>
+      <p>© 2026 YOUR_NAME Portfolio</p>
     </div>
   </footer>
 
   <script>
-  async function loadProjects() {
-    const container = document.getElementById('project-list');
+    function escapeHtml(text) {
+      return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
 
-    try {
-      const response = await fetch('./projects.json');
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const projects = await response.json();
-
-      container.innerHTML = projects.map(project => `
-        <article class="card">
-          <h3>${project.name}</h3>
-          <p>${project.summary || project.description || ''}</p>
-
-          <div class="meta">
-            <strong>Platform:</strong> ${project.platform || '-'}
-          </div>
-
-          <div class="meta">
-            <strong>Tech:</strong> ${(project.techStack || []).join(', ')}
-          </div>
-
-          <div class="meta">
-            <strong>Features:</strong>
-            <ul>
-              ${(project.features || []).map(item => `<li>${item}</li>`).join('')}
-            </ul>
-          </div>
-
-          <div class="meta">
-            <strong>Highlights:</strong>
-            <ul>
-              ${(project.highlights || []).map(item => `<li>${item}</li>`).join('')}
-            </ul>
-          </div>
-
-          <div class="meta">
-            <strong>Architecture:</strong>
-            ${project.architecture?.pattern || '-'}
-          </div>
-
-          <div class="card-links">
-            <a href="${project.repoUrl}" target="_blank" rel="noopener noreferrer">GitHub</a>
-            ${project.media?.demoGif
-              ? `<a href="${project.media.demoGif}" target="_blank" rel="noopener noreferrer">Demo</a>`
-              : ''
-            }
-          </div>
-        </article>
-      `).join('');
-    } catch (error) {
-      console.error(error);
-      container.innerHTML = `
-        <div class="card">
-          <h3>読み込みエラー</h3>
-          <p>projects.json の読み込みに失敗しました。ファイルの場所や JSON の形式を確認してください。</p>
+    function createMetaRow(label, value, extraClass = "") {
+      if (!value) return "";
+      return `
+        <div class="meta-row">
+          <span class="meta-label">${escapeHtml(label)}</span>
+          <span class="meta-value ${extraClass}">${escapeHtml(value)}</span>
         </div>
       `;
     }
+
+    async function loadProjects() {
+      const container = document.getElementById('project-list');
+
+      try {
+        const response = await fetch('./projects.json');
+        const projects = await response.json();
+
+        container.innerHTML = projects.map(project => {
+          const platformClass = project.platform
+            ? `platform-${project.platform.toLowerCase()}`
+            : "";
+
+          return `
+            <article class="card">
+              <h3>${escapeHtml(project.title)}</h3>
+              <p class="card-description">${escapeHtml(project.description)}</p>
+
+              <div class="meta-list">
+                ${createMetaRow("Platform", project.platform || "", platformClass)}
+                ${createMetaRow("Tech", (project.tech || []).join(', '))}
+                ${createMetaRow("Architecture", project.architecture || "")}
+              </div>
+
+              <div class="meta-block">
+                <div class="meta-heading">Features</div>
+                <ul>
+                  ${(project.features || project.highlights || []).map(item => `
+                    <li>${escapeHtml(item)}</li>
+                  `).join('')}
+                </ul>
+              </div>
+
+              ${project.highlights && project.features ? `
+                <div class="meta-block">
+                  <div class="meta-heading">Highlights</div>
+                  <ul>
+                    ${project.highlights.map(item => `
+                      <li>${escapeHtml(item)}</li>
+                    `).join('')}
+                  </ul>
+                </div>
+              ` : ''}
+
+              <div class="card-links">
+                <a href="${escapeHtml(project.github)}" target="_blank" rel="noopener noreferrer">GitHub</a>
+                ${project.demo ? `<a href="${escapeHtml(project.demo)}" target="_blank" rel="noopener noreferrer">Demo</a>` : ''}
+              </div>
+            </article>
+          `;
+        }).join('');
+      } catch (error) {
+        container.innerHTML = `
+          <div class="card">
+            <h3>読み込みエラー</h3>
+            <p>projects.json の読み込みに失敗しました。ファイルの場所や JSON の形式を確認してください。</p>
+          </div>
+        `;
+      }
     }
 
-  loadProjects();
-</script>
+    loadProjects();
+  </script>
 </body>
 </html>
