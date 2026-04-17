@@ -1,26 +1,89 @@
 [
   {
-    "title": "Pix Search Android",
-    "description": "Kotlin と Jetpack Compose を使った画像検索サンプルアプリです。",
-    "tech": ["Kotlin", "Jetpack Compose", "REST API"],
-    "highlights": [
-      "検索キーワード入力と一覧表示を実装",
-      "シンプルで見やすい UI を意識",
-      "GitHub 上でコードを公開予定"
+    "id": "pixsearch-android",
+    "name": "PixSearch-Android",
+    "platform": "Android",
+    "repoUrl": "https://github.com/DingCheng19/PixSearch-Android",
+    "branch": "master",
+    "description": "Pexels APIを利用した画像検索Androidアプリ。キーワード検索、画像一覧のグリッド表示、詳細画面表示、キーボード自動制御に対応。",
+    "summary": "Jetpack ComposeとMVVMアーキテクチャで実装したAndroid向け写真検索アプリ。",
+    "techStack": [
+      "Kotlin",
+      "Jetpack Compose",
+      "MVVM",
+      "StateFlow",
+      "Retrofit",
+      "OkHttp",
+      "Coil",
+      "Navigation Compose"
     ],
-    "github": "https://github.com/DingCheng19/pix_search_android",
-    "demo": ""
+    "features": [
+      "キーワードによる画像検索",
+      "画像一覧のグリッド表示",
+      "画像の詳細画面表示",
+      "検索時・画面タップ時のキーボード自動非表示",
+      "Pexels APIからのリアルデータ取得"
+    ],
+    "architecture": {
+      "pattern": "MVVM",
+      "flow": [
+        "UI (Compose)",
+        "ViewModel",
+        "Repository",
+        "API (Retrofit)"
+      ]
+    },
+    "highlights": [
+      "ViewModelのStateFlowをUIが監視する構成",
+      "Repositoryでデータ取得責務を分離",
+      "Composeベースで検索画面と詳細画面を構築"
+    ],
+    "media": {
+      "demoGif": "https://github.com/DingCheng19/PixSearch-Android/blob/master/demo.gif"
+    },
+    "language": "Kotlin"
   },
   {
-    "title": "Pix Search Flutter",
-    "description": "Flutter で作成する画像検索サンプルアプリです。",
-    "tech": ["Flutter", "Dart", "REST API"],
-    "highlights": [
-      "今後追加予定の Flutter 版サンプル",
-      "Android 版と比較しやすい構成を想定",
-      "ポートフォリオ用途を意識した整理"
+    "id": "pixsearch-ios",
+    "name": "PixSearch",
+    "platform": "iOS",
+    "repoUrl": "https://github.com/DingCheng19/PixSearch",
+    "branch": "main",
+    "description": "Pexels APIを利用した写真検索iOSアプリ。キーワード検索、UICollectionViewによる一覧表示、全画面の詳細表示、0件表示、エラーハンドリング、ローディング表示に対応。",
+    "summary": "UIKit + RxSwift + MVVMで実装したiOS向け写真検索アプリ。",
+    "techStack": [
+      "Swift",
+      "UIKit",
+      "RxSwift",
+      "RxCocoa",
+      "MVVM",
+      "URLSession",
+      "XCTest"
     ],
-    "github": "https://github.com/DingCheng19/pix_search_flutter",
-    "demo": ""
+    "features": [
+      "キーワードによる写真検索",
+      "UICollectionViewによる検索結果一覧表示",
+      "写真の全画面詳細表示",
+      "検索結果0件時のメッセージ表示",
+      "ネットワークエラー時のエラーハンドリング",
+      "ローディングインジケーター表示"
+    ],
+    "architecture": {
+      "pattern": "MVVM",
+      "layers": [
+        "Presentation/View",
+        "Presentation/ViewModel",
+        "Domain/Model",
+        "Data/Repository",
+        "Data/DTO",
+        "Data/Network"
+      ]
+    },
+    "highlights": [
+      "RxSwiftのInput/Outputパターンを採用",
+      "ViewControllerはUIとバインディングのみを担当",
+      "ViewModel単体テストを実装"
+    ],
+    "language": "Swift"
   }
 ]
