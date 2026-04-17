@@ -1,22 +1,9 @@
 [
   {
-    "id": "pixsearch-android",
-    "name": "PixSearch-Android",
+    "title": "PixSearch-Android",
+    "description": "Jetpack ComposeとMVVMアーキテクチャで実装したAndroid向け写真検索アプリ。",
     "platform": "Android",
-    "repoUrl": "https://github.com/DingCheng19/PixSearch-Android",
-    "branch": "master",
-    "description": "Pexels APIを利用した画像検索Androidアプリ。キーワード検索、画像一覧のグリッド表示、詳細画面表示、キーボード自動制御に対応。",
-    "summary": "Jetpack ComposeとMVVMアーキテクチャで実装したAndroid向け写真検索アプリ。",
-    "techStack": [
-      "Kotlin",
-      "Jetpack Compose",
-      "MVVM",
-      "StateFlow",
-      "Retrofit",
-      "OkHttp",
-      "Coil",
-      "Navigation Compose"
-    ],
+    "tech": ["Kotlin", "Jetpack Compose", "MVVM", "StateFlow", "Retrofit", "OkHttp", "Coil", "Navigation Compose"],
     "features": [
       "キーワードによる画像検索",
       "画像一覧のグリッド表示",
@@ -24,42 +11,20 @@
       "検索時・画面タップ時のキーボード自動非表示",
       "Pexels APIからのリアルデータ取得"
     ],
-    "architecture": {
-      "pattern": "MVVM",
-      "flow": [
-        "UI (Compose)",
-        "ViewModel",
-        "Repository",
-        "API (Retrofit)"
-      ]
-    },
     "highlights": [
       "ViewModelのStateFlowをUIが監視する構成",
       "Repositoryでデータ取得責務を分離",
       "Composeベースで検索画面と詳細画面を構築"
     ],
-    "media": {
-      "demoGif": "https://github.com/DingCheng19/PixSearch-Android/blob/master/demo.gif"
-    },
-    "language": "Kotlin"
+    "architecture": "MVVM",
+    "github": "https://github.com/DingCheng19/PixSearch-Android",
+    "demo": ""
   },
   {
-    "id": "pixsearch-ios",
-    "name": "PixSearch",
+    "title": "PixSearch",
+    "description": "UIKit + RxSwift + MVVMで実装したiOS向け写真検索アプリ。",
     "platform": "iOS",
-    "repoUrl": "https://github.com/DingCheng19/PixSearch",
-    "branch": "main",
-    "description": "Pexels APIを利用した写真検索iOSアプリ。キーワード検索、UICollectionViewによる一覧表示、全画面の詳細表示、0件表示、エラーハンドリング、ローディング表示に対応。",
-    "summary": "UIKit + RxSwift + MVVMで実装したiOS向け写真検索アプリ。",
-    "techStack": [
-      "Swift",
-      "UIKit",
-      "RxSwift",
-      "RxCocoa",
-      "MVVM",
-      "URLSession",
-      "XCTest"
-    ],
+    "tech": ["Swift", "UIKit", "RxSwift", "RxCocoa", "MVVM", "URLSession", "XCTest"],
     "features": [
       "キーワードによる写真検索",
       "UICollectionViewによる検索結果一覧表示",
@@ -68,22 +33,13 @@
       "ネットワークエラー時のエラーハンドリング",
       "ローディングインジケーター表示"
     ],
-    "architecture": {
-      "pattern": "MVVM",
-      "layers": [
-        "Presentation/View",
-        "Presentation/ViewModel",
-        "Domain/Model",
-        "Data/Repository",
-        "Data/DTO",
-        "Data/Network"
-      ]
-    },
     "highlights": [
       "RxSwiftのInput/Outputパターンを採用",
       "ViewControllerはUIとバインディングのみを担当",
       "ViewModel単体テストを実装"
     ],
-    "language": "Swift"
+    "architecture": "MVVM",
+    "github": "https://github.com/DingCheng19/PixSearch",
+    "demo": ""
   }
 ]
