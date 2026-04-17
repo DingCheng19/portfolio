@@ -98,9 +98,15 @@
               ` : ''}
 
               <div class="card-links">
-                <a href="${escapeHtml(project.github)}" target="_blank" rel="noopener noreferrer">GitHub</a>
-                ${project.demo ? `<a href="${escapeHtml(project.demo)}" target="_blank" rel="noopener noreferrer">Demo</a>` : ''}
-              </div>
+              <a class="link-btn github" href="${escapeHtml(project.github)}" target="_blank" rel="noopener noreferrer">
+                🔗 GitHub
+              </a>
+              ${project.demo ? `
+                <a class="link-btn demo" href="${escapeHtml(project.demo)}" target="_blank" rel="noopener noreferrer">
+                  ▶ Demo
+                </a>
+              ` : ""}
+            </div>
             </article>
           `;
         }).join('');
