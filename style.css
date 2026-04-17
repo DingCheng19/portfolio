@@ -203,4 +203,43 @@ code {
   .meta-label {
     min-width: 80px;
   }
+
+  .card-links {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+/* 共通ボタン */
+.link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+/* GitHub */
+.link-btn.github {
+  background: #111827;
+  color: white;
+}
+
+.link-btn.github:hover {
+  background: #374151;
+}
+
+/* Demo */
+.link-btn.demo {
+  background: #2563eb;
+  color: white;
+}
+
+.link-btn.demo:hover {
+  background: #1d4ed8;
+}
 }
