@@ -41,5 +41,26 @@
     "architecture": "MVVM",
     "github": "https://github.com/DingCheng19/PixSearch",
     "demo": ""
+  },
+  {
+  "title": "PixSearch-Flutter",
+  "description": "FlutterとDartで実装したクロスプラットフォーム向け写真検索アプリ。",
+  "platform": "Flutter",
+  "tech": ["Flutter", "Dart", "Dio", "go_router", "Pexels API"],
+  "features": [
+    "キーワードによる画像検索",
+    "画像一覧のグリッド表示",
+    "画像の詳細画面表示",
+    "一覧画面から詳細画面への遷移",
+    "Pexels APIからのリアルデータ取得",
+    "詳細画面で高解像度画像を表示"],
+  "highlights": [
+    "機能ごとにdata・domain・presentationを分けた構成",
+    "go_routerを用いた一覧画面から詳細画面への遷移を実装",
+    "Photoモデルを導入し、型安全なデータ受け渡しに改善"
+  ],
+  "architecture": "Feature-based",
+  "github": "https://github.com/DingCheng19/PixSearch-Flutter",
+  "demo": ""
   }
 ]
